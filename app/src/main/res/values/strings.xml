@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Project 5</string>
+    <string name="take_photo">Fotografuoti</string>
+    <string name="erase">Erase</string>
+    <string name="erasercolor">EraserColor</string>
+    <string name="add_copyright">Add copyright</string>
+    <string-array name="colors_array">
+        <item>Balta</item>
+        <item>Juoda</item>
+        <item>Žalia</item>
+        <item>Geltona</item>
+        <item>Raudona</item>
+    </string-array>
 </resources>
