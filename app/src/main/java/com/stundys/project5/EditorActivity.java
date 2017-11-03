@@ -1,23 +1,20 @@
 package com.stundys.project5;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
+import android.widget.Spinner;
 
 public class EditorActivity extends AppCompatActivity {
-    public Bitmap image;
     public DrawingView imageViewer;
-    public Button colorChanger;
-    public int[] colors;
-
-    public int currentColorIndex = 0;
+    public Spinner colorPicker;
     public int currentColor;
 
     @Override
@@ -27,32 +24,48 @@ public class EditorActivity extends AppCompatActivity {
 
         // Bitmap from Intent
         Intent intent = getIntent();
-        image = intent.getParcelableExtra(MainActivity.INCOMING_PICTURE_MESSAGE);
+        Bitmap image = intent.getParcelableExtra(MainActivity.INCOMING_PICTURE_MESSAGE);
 
         imageViewer = findViewById(R.id.drawingView);
-        imageViewer.setBackground(new BitmapDrawable(getResources(), image));
+        // imageViewer.setBackground(new BitmapDrawable(getResources(), image));
 
-        // Color picker spinner values
-        colorChanger = findViewById(R.id.color_changer);
-        colors = this.getResources().getIntArray(R.array.colorPickerColors);
-        currentColor = colors[currentColorIndex];
-        setColor(currentColorIndex);
+        imageViewer.setBitmap(image);
+
+        //Spinner
+        colorPicker = findViewById(R.id.colorPicker);
+        setupColorPicker();
     }
 
-    public void cycleColor(View view){
-        if(currentColorIndex < colors.length - 1){
-            currentColorIndex = currentColorIndex + 1;
-        } else {
-            currentColorIndex = 0;
-        }
+    private void setupColorPicker() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.color_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        colorPicker.setAdapter(adapter);
+        colorPicker.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                String colorName = colorPicker.getSelectedItem().toString();
+                currentColor = ContextCompat.getColor(getApplicationContext(), getColorIdentifier(colorName));
+                imageViewer.setPaintColor(currentColor);
+            }
 
-        setColor(currentColorIndex);
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
-    private void setColor(int index){
-        currentColor = colors[index];
+    public int getColorIdentifier(String name) {
+        return getResources().getIdentifier(name, "color", this.getPackageName());
+    }
 
-        ViewCompat.setBackgroundTintList(colorChanger, ColorStateList.valueOf(currentColor));
+    public void addAuthorText(View view){
+        String authorName = getResources().getString(R.string.author);
+        imageViewer.setText(authorName);
+    }
 
+    public void setDrawingMode(View view){
+        imageViewer.setCanDraw(true);
     }
 }

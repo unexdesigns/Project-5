@@ -5,4 +5,16 @@
     <string name="erasercolor">EraserColor</string>
     <string name="add_copyright">Add copyright</string>
     <string name="color">Spalva</string>
+    <string name="author">Žanas Stundys, MKDf 14-3</string>
+
+    <string-array name="color_array">
+        <item>red</item>
+        <item>orange</item>
+        <item>yellow</item>
+        <item>light_green</item>
+        <item>bright_pink</item>
+        <item>green</item>
+        <item>teal</item>
+        <item>cyan</item>
+    </string-array>
 </resources>
