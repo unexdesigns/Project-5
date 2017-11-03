@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#12a670</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="semi">#AAFFFFFF</color>
+
     <color name="bright_pink">#FF007F</color>
     <color name="red">#F44336</color>
     <color name="orange">#FF7F00</color>
