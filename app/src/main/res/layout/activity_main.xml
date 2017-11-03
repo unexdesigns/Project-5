@@ -14,7 +14,7 @@
         android:backgroundTint="@color/colorPrimary"
         android:drawablePadding="8dp"
         android:drawableTint="@android:color/background_light"
-        android:drawableTop="@drawable/ic_action_name"
+        android:drawableTop="@drawable/ic_camera"
         android:onClick="takePhoto"
         android:padding="24dp"
         android:text="@string/take_photo"
