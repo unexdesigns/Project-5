@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#17cf8c</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#12a670</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="bright_pink">#FF007F</color>
     <color name="red">#F44336</color>
     <color name="orange">#FF7F00</color>
     <color name="yellow">#FDD835</color>
-    <color name="chartreuse">#7FFF00</color>
     <color name="green">#00FF00</color>
     <color name="teal">#009688</color>
     <color name="cyan">#00FFFF</color>
@@ -20,15 +19,5 @@
     <color name="brown">#795548</color>
     <color name="light_green">#8BC34A</color>
     <color name="black">#000000</color>
-
-    <array name="colorPickerColors">
-        <item>@color/indigo</item>
-        <item>@color/azure</item>
-        <item>@color/teal</item>
-        <item>@color/light_green</item>
-        <item>@color/yellow</item>
-        <item>@color/red</item>
-        <item>@color/brown</item>
-    </array>
 </resources>
 

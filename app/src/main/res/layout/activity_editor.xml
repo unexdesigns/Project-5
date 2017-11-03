@@ -6,6 +6,30 @@
     android:layout_height="match_parent"
     tools:context="com.stundys.project5.EditorActivity">
 
+    <FrameLayout
+        android:id="@+id/imageViewerContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.stundys.project5.DrawingView
+            android:id="@+id/drawingView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@mipmap/ic_launcher" />
+    </FrameLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -27,19 +51,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:contentDescription="@string/erase"
+            android:onClick="setDrawingMode"
             android:padding="24dp"
             app:srcCompat="@drawable/ic_paint" />
 
-        <Button
-            android:id="@+id/color_changer"
-            android:layout_width="wrap_content"
+        <Spinner
+            android:id="@+id/colorPicker"
+            android:layout_width="157dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="cycleColor"
-            android:text="@string/color"
-            android:textColor="@android:color/white"
-            android:textColorLink="@color/colorAccent"
-            tools:text="Spalva" />
+            android:spinnerMode="dialog" />
 
         <ImageButton
             android:id="@+id/copyrightButton"
@@ -48,21 +69,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:contentDescription="@string/add_copyright"
+            android:onClick="addAuthorText"
             android:padding="24dp"
             app:srcCompat="@drawable/ic_action_name" />
 
     </LinearLayout>
 
-    <com.stundys.project5.DrawingView
-        android:id="@+id/drawingView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:background="@mipmap/ic_launcher" />
 </android.support.constraint.ConstraintLayout>
