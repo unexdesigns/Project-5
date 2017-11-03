@@ -1,53 +1,58 @@
 package com.stundys.project5;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
+import android.widget.Button;
 
-public class EditorActivity extends AppCompatActivity implements android.widget.AdapterView.OnItemSelectedListener {
+public class EditorActivity extends AppCompatActivity {
     public Bitmap image;
     public DrawingView imageViewer;
-    public Spinner colorSpinner;
-    private Object AdapterView;
+    public Button colorChanger;
+    public int[] colors;
 
+    public int currentColorIndex = 0;
+    public int currentColor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
 
+        // Bitmap from Intent
         Intent intent = getIntent();
         image = intent.getParcelableExtra(MainActivity.INCOMING_PICTURE_MESSAGE);
 
         imageViewer = findViewById(R.id.drawingView);
         imageViewer.setBackground(new BitmapDrawable(getResources(), image));
 
-        colorSpinner = findViewById(R.id.colorSpinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.colors_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        colorSpinner.setAdapter(adapter);
-        colorSpinner.setOnItemSelectedListener(this);
+        // Color picker spinner values
+        colorChanger = findViewById(R.id.color_changer);
+        colors = this.getResources().getIntArray(R.array.colorPickerColors);
+        currentColor = colors[currentColorIndex];
+        setColor(currentColorIndex);
     }
 
+    public void cycleColor(View view){
+        if(currentColorIndex < colors.length - 1){
+            currentColorIndex = currentColorIndex + 1;
+        } else {
+            currentColorIndex = 0;
+        }
 
-    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        // An item was selected. You can retrieve the selected item using
-        parent.getItemAtPosition(pos);
-
-
+        setColor(currentColorIndex);
     }
 
-    public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback
+    private void setColor(int index){
+        currentColor = colors[index];
+
+        ViewCompat.setBackgroundTintList(colorChanger, ColorStateList.valueOf(currentColor));
+
     }
 }

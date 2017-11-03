@@ -30,14 +30,16 @@
             android:padding="24dp"
             app:srcCompat="@drawable/ic_paint" />
 
-        <Spinner
-            android:id="@+id/colorSpinner"
+        <Button
+            android:id="@+id/color_changer"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clipToPadding="false"
-            android:entries="@string/take_photo"
-            android:theme="@style/Widget.AppCompat.Button.Borderless.Colored" />
+            android:onClick="cycleColor"
+            android:text="@string/color"
+            android:textColor="@android:color/white"
+            android:textColorLink="@color/colorAccent"
+            tools:text="Spalva" />
 
         <ImageButton
             android:id="@+id/copyrightButton"
